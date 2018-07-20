@@ -4,7 +4,11 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
+        ROLE_ASSISTANT:   ROLE_USER
+        ROLE_DOCTOR:      ROLE_ASSISTANT
         ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       ROLE_ASSISTANT
+        ROLE_ADMIN:       ROLE_DOCTOR
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
@@ -25,4 +29,6 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/PrendreRDV, role: ROLE_USER }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/Cabinet/Administration, roles: [ROLE_DOCTOR, ROLE_ASSISTANT] }

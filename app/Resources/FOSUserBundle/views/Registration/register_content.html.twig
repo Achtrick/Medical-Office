@@ -1,0 +1,36 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+    <div class="form-group" id="fos_user_registration_form">    
+        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
+        {{ form_errors(form.email) }}
+
+        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
+        {{ form_errors(form.username) }}
+
+        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+        {{ form_errors(form.plainPassword.first) }}
+
+        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+        {{ form_errors(form.plainPassword.second) }}
+
+        {{ form_widget(form.nom, { 'attr': {'class': 'form-control', 'placeholder': 'Nom'|trans } }) }}
+        {{ form_errors(form.nom) }}        
+
+        {{ form_widget(form.prenom, { 'attr': {'class': 'form-control', 'placeholder': 'Prenom'|trans } }) }}
+        {{ form_errors(form.prenom) }}
+
+        {{ form_widget(form.cin, { 'attr': {'class': 'form-control', 'placeholder': 'Cin'|trans } }) }}
+        {{ form_errors(form.cin) }}
+
+        {{ form_widget(form.date_de_naissance, { 'attr': {'class': 'form-control', 'placeholder': 'Date de naissance'|trans } }) }}
+        {{ form_errors(form.date_de_naissance) }}
+    </div> 
+    <div>
+
+      <input type="submit" class="btn btn-success" value="{{ 'registration.submit'|trans }}" />
+
+    </div>
+    
+</div>
+{{ form_end(form) }}

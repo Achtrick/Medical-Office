@@ -1,0 +1,6 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+    <a href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>
+{% endblock fos_user_content %}

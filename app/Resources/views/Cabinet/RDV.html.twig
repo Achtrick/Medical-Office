@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <h1 class="page-header"> Prenez Votre Rendez-vous </h1>
+   {{form_start(form)}}
+   {{form_widget(form)}}
+   {{form_end(form)}}
+{% endblock %}
+{% block left %}
+<h1 class="page-header"><br></br></h1>
+<h4 align="center"> Horaire de travail : </h4><h5 align="center"><br></br> De Lundie à Samedie <br></br> De 8:00 à 17:00 <br></br>Pause De 12:00 à 13:00</h5>
+{% endblock %}
