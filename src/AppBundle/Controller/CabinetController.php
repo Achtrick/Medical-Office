@@ -804,12 +804,16 @@ class CabinetController extends Controller
         $statement->execute();
         $result = $statement->fetchAll();
 
+        if ($result == null) {
+            $mutuelle = null;
+        }else{
+
         foreach ($result as $key => $value) {
             foreach ($value as $key1 => $value1) {
                 $mutuelle=$value;
             }
         }
-
+    }
         $em = $this->getDoctrine()->getManager();
         $RAW_QUERY = 'SELECT * FROM consultation where consultation.cin = :c;';
         $statement = $em->getConnection()->prepare($RAW_QUERY);
