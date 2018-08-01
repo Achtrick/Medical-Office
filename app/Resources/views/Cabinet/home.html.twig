@@ -62,7 +62,7 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="PrendreRDV">Rendez-vous</a>
-              <a class="dropdown-item" href="#">Ma fiche</a>
+              <a class="dropdown-item" href="/voirmafiche">Ma fiche</a>
             </div>
             </li> 
 
@@ -74,10 +74,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">À-propos</a>
+              <a class="nav-link" href="/apropos">À-propos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a> 
+              <a class="nav-link" href="/contact">Contact</a> 
             </li>
 
             {% endif %}
@@ -119,24 +119,24 @@
           <!-- Slide One - Set the background image for this slide in the line below -->
           <div class="carousel-item active" style="background-image: url(../../../../slide1.jpg)">
             <div class="carousel-caption d-none d-md-block">
-            <C1><h3>First Slide</h3>
-              <p>This is a description for the first slide.</p>
+            <C1><h3>Actualité à votre main</h3>
+              <p>vérifiez votre processus avec les détails</p>
             </C1>
             </div>
           </div>
           <!-- Slide Two - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url(../../../../slide2.jpg)">
             <div class="carousel-caption d-none d-md-block">
-            <C1><h3>Second Slide</h3>
-              <p>This is a description for the second slide.</p>
+            <C1><h3>Services clients</h3>
+              <p>Une équipe proffesionel à votre service</p>
             </C1>
             </div>
           </div>
           <!-- Slide Three - Set the background image for this slide in the line below -->
           <div class="carousel-item" style="background-image: url(../../../../slide3.jpg)">
             <div class="carousel-caption d-none d-md-block">
-            <C1><h3>Third Slide</h3>
-              <p>This is a description for the third slide.</p>
+            <C1><h3>Portabilité</h3>
+              <p>réservez un rendez-vous de n'importe où</p>
             </C1>
             </div>
           </div>
@@ -155,18 +155,31 @@
     <!-- Page Content -->
     <section class="py-5">
       <div class="container">
-        <h1>Full Slider by Start Bootstrap</h1>
-        <p>The background images for the slider are set directly in the HTML using inline CSS. The rest of the styles for this template are contained within the
-          <code>full-slider.css</code>
-          file.</p>
+        <h1><center>Notre cabinet électronique est à votre disposition</center></h1>
+        <br></br>
+        <p><h2><center>Profitez de nos services spécialement conçus pour votre détente</center><h2></p>
       </div>
     </section>
-        {% block body %}{% endblock %}
+    <section class="py-5">
+      <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                
-            </div>
+          <div class="col-md-4">
+          {% block left %}
+            <div><h3>Prenez votre rendez-vous depuis n'importe quel place et profitez de notre guidage bien automatisé <br></br></br></h3><img src="../../../../pr.jpg", class="img-thumbnail" ></div>
+          {% endblock %}
+          </div>
+          <div class="col-md-4">
+          {% block body %}
+            <div><h3>Consultez votre fiche médicale et le workflow de votre traitement et tous les informations personnels en toutes sécurité<br></br></h3><img src="../../../../fm.jpg", class="img-thumbnail" ></div>
+          {% endblock %}
+          </div>
+          <div class="col-md-4">
+            {% block right %}
+              <div><h3>Profitez de notre service clients pour trouver les réponses à toutes vos questions <br></br></br></h3><img src="../../../../sc.jpg", class="img-thumbnail" ></div>
+            {% endblock %}
+          </div>
         </div>
+    </section>
 
     <!-- Footer -->
     <footer class="py-5" style="background-color: #cccccc;">

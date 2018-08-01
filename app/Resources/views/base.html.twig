@@ -99,7 +99,7 @@
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="PrendreRDV">Rendez-vous</a>
-              <a class="dropdown-item" href="#">Ma fiche</a>
+              <a class="dropdown-item" href="/voirmafiche">Ma fiche</a>
             </div>
             </li> 
 
@@ -111,10 +111,10 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">À-propos</a>
+              <a class="nav-link" href="/apropos">À-propos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a> 
+              <a class="nav-link" href="/contact">Contact</a> 
             </li>
 
             {% endif %}
@@ -157,6 +157,10 @@
                {% block table %}{% endblock %} 
             </div>
         </div>
+        <br></br>
+        {% for flash_message in app.session.flashbag.get('notice') %}
+              <center><div class="alert alert-info">{{flash_message}}</div></center>
+            {% endfor %} 
     </div>
     </section>
     <section class="py-5">
@@ -166,9 +170,7 @@
           {% block left %}{% endblock %}
           </div>
           <div class="col-md-4">
-            {% for flash_message in app.session.flashbag.get('notice') %}
-              <center><div class="alert alert-success">{{flash_message}}</div></center>
-            {% endfor %} 
+            
             {% block body %}{% endblock %}
           </div>
           <div class="col-md-4">

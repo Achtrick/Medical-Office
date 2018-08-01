@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% block table %}
+<br></br>
+<br></br>
+<h1 class="page-header"> Contactez-nous </h1>
+<br></br>
+{{ form_start(form) }}
+
+    <div>
+        {{ form_widget(form.subject) }}
+        {{ form_errors(form.subject) }}
+    </div>
+    <div>
+        {{ form_widget(form.name) }}
+        {{ form_errors(form.name) }}
+    </div>
+    <div>
+        {{ form_widget(form.email) }}
+        {{ form_errors(form.email) }}
+    </div>
+    <div>
+        {{ form_widget(form.message) }}
+        {{ form_errors(form.message) }}
+    </div>
+
+    {# Render CSRF token etc .#}
+    <div style="display:none">
+        {{ form_rest(form) }}
+    </div>
+    
+    <input class="btn btn-success" type="submit" value="Submit">
+    
+{{ form_end(form) }}
+
+{% endblock %}
+
+{% block body %}
+
+<h3 align="center"> Téléphone : 71234567 <br> Fax : 77123456 </h3>
+
+{% endblock %}

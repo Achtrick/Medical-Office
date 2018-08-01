@@ -26,6 +26,11 @@ class User extends BaseUser
     protected $cin;
 
     /**
+     * @ORM\Column(type="string", nullable = true)
+     */
+    protected $m;
+
+    /**
      * @ORM\Column(type="string")
      */
     protected $prenom;
@@ -141,5 +146,29 @@ class User extends BaseUser
     public function getDateDeNaissance()
     {
         return $this->date_de_naissance;
+    }
+
+    /**
+     * Set m
+     *
+     * @param string $m
+     *
+     * @return User
+     */
+    public function setM($m)
+    {
+        $this->m = $m;
+
+        return $this;
+    }
+
+    /**
+     * Get m
+     *
+     * @return string
+     */
+    public function getM()
+    {
+        return $this->m;
     }
 }

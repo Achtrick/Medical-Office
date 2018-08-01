@@ -6,11 +6,10 @@
 {% block table %}
 <br></br>
 <br></br>
-<h1 class="page-header"> Gestion des fiches de patients </h1>
+<a href="/Cabinet/Administration/Gestionconsultation" class="btn btn-outline-secondary">Retour</a>
 <br></br>
+<h1 class="page-header"> Liste des consultations </h1><br></br>
 <body>
-
-<br></br>
 <table class="table table-stripped">
     <thead>
       <tr>
@@ -28,7 +27,7 @@
         <td><h4>{{user.nom}}</h4></td>
         <td><h4>{{user.prenom}}</h4></td>
         <td><h4>{{user.cin}}</h4></td>
-        <td><a href="/Cabinet/Administration/Gestionfiche/voir/{{user.id}}" class="btn btn-info"><h4>Voir</h4></a>
+        <td><a href="/Cabinet/Administration/Gestionconsultation/voir/{{user.cin}}" class="btn btn-info"><h4>Voir</h4>
         </td>
       		</tr>
 

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block table %}
+<br></br>
+<br></br>
+    {% for consult in consults %}
+    <a class="btn btn-outline-secondary" href="/voirmafiche">Retour</a>
+    <hr>
+    <h1 class="page-header">{{consult.date_consult}} </h1>
+    <br></br>
+    <ul class="list-group">
+    <li class"list-group-item"><h3> Type de consultation : {{consult.type}}</h3></li>
+    <li class"list-group-item"><h3> Maladie : {{consult.maladie}}</h3></li>
+    <br></br>
+    </ul>
+    <p>
+      <h3> 🡺   {{consult.description}}</h3>
+    </p>
+    <br></br>
+    {% if (consult.file != null) %}
+    <a class="btn btn-info" href="{{ asset('uploads/' ~ consult.file) }}"><h4>Voir Fichier</h4></a>
+    {% endif %}
+    {% endfor %}    
+{% endblock %}

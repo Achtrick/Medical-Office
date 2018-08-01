@@ -3,6 +3,49 @@
 {% block stylesheets %}
 {% endblock %}
 
-{% block body %}
-gestionmutuelle
+{% block table %}
+<br></br>
+<br></br>
+<h1 class="page-header"> Gestion des mutuelles </h1>
+<body>
+
+<br></br>
+<table class="table table-stripped">
+    <thead>
+      <tr>
+        <th><h4>Nom</h4></th>
+        <th><h4>Prénom</h4></th>
+        <th><h4>Cin</h4></th>
+        <th><h4>Action</h4></th>
+      </tr>
+    </thead>
+    <tbody>
+
+          	{% for user in users %}
+
+          	<tr>
+        <td><h4>{{user.nom}}</h4></td>
+        <td><h4>{{user.prenom}}</h4></td>
+        <td><h4>{{user.cin}}</h4></td>
+
+        	{% if (user.m == null or user.m == 'NO') %}
+
+        <td>
+        <a href="/Cabinet/Administration/Gestionmutuelle/créer/{{user.id}}" class="btn btn-success"><h4>Créer</h4></a>
+        </td>
+
+        	{% else %}
+
+        <td>
+        <a href="/Cabinet/Administration/Gestionmutuelle/edit/{{user.id}}" class="btn btn-warning"><h4>Modifier</h4></a>
+        <a href="/Cabinet/Administration/Gestionmutuelle/delete/{{user.id}}" class="btn btn-danger" onclick="return confirm('est ce que tu est sûr ?')"><h4>Supprimer</h4></a>
+        </td>
+      		
+        	{% endif %}
+
+      		</tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </body>
 {% endblock %}

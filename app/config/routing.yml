@@ -11,3 +11,6 @@ easy_admin_bundle:
    type:     annotation
  
    prefix:   /admin
+myapplication_contact:
+    path:     /contact
+    defaults: { _controller: AppBundle:Default:contact }

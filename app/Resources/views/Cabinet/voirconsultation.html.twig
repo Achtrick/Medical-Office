@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block table %}
+<br></br>
+<br></br>
+<a href="/Cabinet/Administration/Gestionconsultation/voir/" class="btn btn-outline-secondary">Retour</a>
+<br></br>
+{% for user in users %}
+<h1 class="page-header"> Liste des consultations de "{{user.nom}} {{user.prenom}}" </h1><br></br>
+{% endfor %}
+<body>
+
+  {% if (consults == null) %}
+    <h4><center> Ce patient n'a aucune consultation </center></h4>
+  {% else %}
+
+<table class="table table-stripped">
+    <thead>
+      <tr>
+        <th><h4>Date</h4></th>
+        <th><h4>Type</h4></th>
+        <th><h4>Madlaie</h4></th>
+        <th><h4>Action</h4></th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for consult in consults %}
+          <tr>
+        <td><h4>{{consult.date_consult}}</h4></td>
+        <td><h4>{{consult.type}}</h4></td>
+        <td><h4>{{consult.maladie}}</h4></td>
+        <td><a href="/Cabinet/Administration/Gestionconsultation/voirconsult/{{consult.id}}" class="btn btn-info"><h4>Voir</h4></a>
+        <a href="/Cabinet/Administration/Gestionconsultation/edit/{{consult.id}}" class="btn btn-warning"><h4>Modifier</h4></a>
+        <a href="/Cabinet/Administration/Gestionconsultation/delete/{{consult.id}}" class="btn btn-danger" onclick="return confirm('est ce que tu est sûr ?')"><h4>Supprimer</h4></a>
+        </td>
+      		</tr>
+  {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+  </body>
+{% endblock %}
