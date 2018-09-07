@@ -162,7 +162,13 @@ class RdvController extends Controller
                 'Aucun résultat trouvé !'
                 );
                 return $this->redirectToRoute('Gestionrdv');
+        }else{
+            $this->addFlash(
+                'notice',
+                'Résultat pour votre recherche'
+                );
         }
+
 
         return $this->render('Cabinet/rdv/gestionrdv.html.twig', array(
         'users' => $users));

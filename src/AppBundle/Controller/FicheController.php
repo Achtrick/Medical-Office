@@ -63,7 +63,13 @@ class FicheController extends Controller
                 'Aucun résultat trouvé !'
                 );
                 return $this->redirectToRoute('Gestionfiche');
+        }else{
+            $this->addFlash(
+                'notice',
+                'Résultat pour votre recherche'
+                );
         }
+
 
 		return $this->render('Cabinet/fiche/gestionfiche.html.twig', array(
     	'users' => $users));

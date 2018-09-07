@@ -67,6 +67,11 @@ class ConsultController extends Controller
                 'Aucun résultat trouvé !'
                 );
                 return $this->redirectToRoute('Gestionconsultation');
+        }else{
+            $this->addFlash(
+                'notice',
+                'Résultat pour votre recherche'
+                );
         }
 
         return $this->render('Cabinet/consultation/gestionconsultation.html.twig', array(
@@ -308,7 +313,13 @@ class ConsultController extends Controller
                 'Aucun résultat trouvé !'
                 );
                 return $this->redirectToRoute('voirconsultations');
+        }else{
+            $this->addFlash(
+                'notice',
+                'Résultat pour votre recherche'
+                );
         }
+
 
         return $this->render('Cabinet/consultation/voirconsultations.html.twig', array(
         'users' => $users));
@@ -369,7 +380,13 @@ class ConsultController extends Controller
                 'Aucun résultat trouvé !'
                 );
                 return $this->redirect("/Cabinet/Administration/Gestionconsultation/voir/$cin");
+        }else{
+            $this->addFlash(
+                'notice',
+                'Résultat pour votre recherche'
+                );
         }
+
 
         return $this->render('Cabinet/consultation/voirconsultation.html.twig', array(
         'consults'=>$consults, 'users'=>$users ));

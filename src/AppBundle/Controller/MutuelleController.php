@@ -68,7 +68,13 @@ class MutuelleController extends Controller
                 'Aucun résultat trouvé !'
                 );
                 return $this->redirectToRoute('Gestionmutuelle');
+        }else{
+            $this->addFlash(
+                'notice',
+                'Résultat pour votre recherche'
+                );
         }
+
 
         return $this->render('Cabinet/mutuelle/gestionmutuelle.html.twig', array(
         'users' => $users));
