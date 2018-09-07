@@ -21,7 +21,11 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @var string
+     *
+     * @ORM\Column(name="cin", type="string", length=255)
+     * @Assert\Length(min=8,max=8)
+     * message = "Minimum 8 chiffres"
      */
     protected $cin;
 

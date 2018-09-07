@@ -8,12 +8,6 @@
     C2 { color: #FFFFFF; }
   </style>
 
-  <style>
-    .dropdown:hover>.dropdown-menu{
-      display: block;
-    }
-  </style>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -24,6 +18,12 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" >
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+
 
     <link rel="icon" type="image/x-icon" href="{{ asset('icon.ico') }}" />
 
@@ -62,7 +62,7 @@
               <a class="nav-link" href=""></a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-light" href="/Cabinet/Administration"> Retour au Dashboard </a>
+              <a class="btn btn-dark" href="/Cabinet/Administration"><i class="fas fa-home"></i></a>
             </li>                   
             <li class="nav-item">
 
@@ -78,37 +78,35 @@
               <a class="nav-link" href=""></a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-light" href="/Cabinet/Administration"> Retour au Dashboard </a>
+              <a class="btn btn-dark" href="/Cabinet/Administration"><i class="fas fa-home"></i></a>
             </li>                   
             <li class="nav-item">
 
             {% elseif is_granted("ROLE_USER") %} 
 
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/">Accueil
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">À-propos</a>
+              <a class="nav-link" href="/apropos">À-propos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a> 
+              <a class="nav-link" href="/contact">Contact</a> 
             </li>
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+            <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="PrendreRDV">Rendez-vous</a>
-              <a class="dropdown-item" href="/voirmafiche">Ma fiche</a>
+              <a class="dropdown-item" href="/PrendreRDV"><i class="far fa-calendar-check"> Rendez-vous</i></a>
+              <a class="dropdown-item" href="/voirmafiche"><i class="far fa-file-alt"> Ma fiche</i></a>
             </div>
-            </li> 
+            </li>  
 
             {% else %}
 
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Accueil
-                <span class="sr-only">(current)</span>
-              </a>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Accueil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/apropos">À-propos</a>
@@ -126,19 +124,19 @@
               <a class="nav-link" href=""></a>
             </li>
             <li>
-          <C2>
+          <C1>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} 
+                <h5><i class="fas fa-user"></i> {{ app.user.username }} 
                 <a href="{{ path('fos_user_security_logout') }}" class="btn btn-dark">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
+                     Déconnexion <i class="fas fa-sign-out-alt"></i>
+                </a></h5>
             {% else %}
                 <a href="{{ path('fos_user_security_login') }}" class="btn btn-info">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                 <a href="{{ path('fos_user_registration_register') }}" class="btn btn-dark">
                   Register
                 </a>
             {% endif %}
-          </C2>   
+          </C1>   
             </li> 
           </ul>
         </div>
@@ -154,13 +152,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-               {% block table %}{% endblock %} 
-            </div>
-        </div>
-        <br></br>
-        {% for flash_message in app.session.flashbag.get('notice') %}
+              <br></br>
+              {% for flash_message in app.session.flashbag.get('notice') %}
               <center><div class="alert alert-info">{{flash_message}}</div></center>
-            {% endfor %} 
+              {% endfor %}
+              {% block table %}{% endblock %} 
+            </div>
+        </div> 
     </div>
     </section>
     <section class="py-5">
@@ -206,9 +204,41 @@
     <!-- Footer -->
     <footer class="py-5" style="background-color: #cccccc;">
       <div class="container">
-        <p class="m-0 text-center text-black">Copyright &copy; PerfectsWeb 2018</p>
+        <div class="row">
+          <div class="col-md-4">
+            <center>
+            <h6><span class="copyright">Copyright &copy; Perfects web 2018</span></h6>
+          </center>
+          </div>
+          <div class="col-md-4">
+            <center><C1>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                  <h5><a class="btn btn-dark" href="http://twitter.com"><i class="fab fa-twitter"></i></a><h5>
+              </li>
+              <li class="list-inline-item">
+                  <h5><a class="btn btn-dark" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a></h5>
+              </li>
+              <li class="list-inline-item">
+                  <h5><a class="btn btn-dark" href="http://linkedin.com"><i class="fab fa-linkedin-in"></i></a><h5>
+              </li>
+            </ul>
+          </C1></center>
+          </div>
+          <div class="col-md-4">
+            <center>
+            <ul class="list-inline quicklinks">
+              <li class="list-inline-item">
+                <h6>Privacy Policy</h6>
+              </li>
+              <li class="list-inline-item">
+                <h6>Terms of Use</h6>
+              </li>
+            </ul>
+          </center>
+          </div>
+        </div>
       </div>
-      <!-- /.container -->
     </footer>
 
     <!-- Bootstrap core JavaScript -->
@@ -218,6 +248,11 @@
     </script>
     <script type="text/javascript" charset="utf8" src="{{ asset('assets/js/moment.min.js') }}"></script>
     <script type="text/javascript" charset="utf8" src="{{ asset('assets/js/bootstrap.min.js') }}">
+    </script>
+    <script>
+      $('#confirm-delete').on('show.bs.modal', function(e) {
+      $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+      });
     </script> 
      {% block javascripts %}
      {% endblock %}

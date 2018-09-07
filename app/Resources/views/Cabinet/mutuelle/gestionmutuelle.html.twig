@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block table %}
+<br></br>
+<h1 class="page-header"> Gestion des mutuelles </h1>
+<br></br>
+<body>
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="far fa-question-circle"></i>
+            </div>
+            <div class="modal-body">
+                Est ce que vous êtes sûr ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+                <a class="btn btn-secondary btn-ok">Oui</a>
+            </div>
+        </div>
+    </div>
+</div>
+<table class="table table-stripped">
+    <thead class="thead-light">
+    <div class="row">
+     <div class="col-4">
+      <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action="{{ path('searchmutuelle') }}">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" name ="search">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-dark"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
+     <div class="col-8"></div>
+   </div> 
+   <br></br>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Cin</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+          	{% for user in users %}
+
+          	<tr>
+        <td>{{user.nom}}</td>
+        <td>{{user.prenom}}</td>
+        <td>{{user.cin}}</td>
+
+        	{% if (user.m == null or user.m == 'NO') %}
+
+        <td>
+        <a href="/Cabinet/Administration/Gestionmutuelle/créer/{{user.id}}" class="btn btn-success"><i class="fas fa-plus-square"></i></a>
+        </td>
+
+        	{% else %}
+
+        <td>
+        <a href="/Cabinet/Administration/Gestionmutuelle/edit/{{user.id}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+        <button class="btn btn-danger" data-href="/Cabinet/Administration/Gestionmutuelle/delete/{{user.id}}" data-toggle="modal" data-target="#confirm-delete">
+        <i class="far fa-trash-alt"></i>
+        </button>
+        </td>
+      		
+        	{% endif %}
+
+      		</tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </body>
+{% endblock %}

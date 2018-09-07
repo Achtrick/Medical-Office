@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block table %}
+<br></br>
+<a href="/Cabinet/Administration/Gestionconsultation" class="btn btn-outline-secondary">Retour</a>
+<br></br>
+<h1 class="page-header"> Liste des consultations </h1><br></br>
+<body>
+<table class="table table-stripped">
+    <thead class="thead-light">
+    <div class="row">
+     <div class="col-4">
+      <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action="{{ path('searchconsultations') }}">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" name ="search">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-dark"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
+     <div class="col-8"></div>
+   </div> 
+   <br></br>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Cin</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+          	{% for user in users %}
+
+          	<tr>
+        <td>{{user.nom}}</td>
+        <td>{{user.prenom}}</td>
+        <td>{{user.cin}}</td>
+        <td><a href="/Cabinet/Administration/Gestionconsultation/voir/{{user.cin}}" class="btn btn-info">
+        <i class="fas fa-eye"></i></td>
+      		</tr>
+
+      		{% endfor %}
+
+    </tbody>
+  </table>
+  </body>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block table %}
+<br></br>
+<br></br>
+    <a class="btn btn-outline-secondary" href="/">Retour</a>
+    <hr>
+    <h3 class="page-header"><i class="far fa-user"></i>  {{user.prenom}} {{user.nom}} </h3>
+    <br></br>
+    <ul class="list-group">
+    <li class"list-group-item"><h4> Numéro Cin : {{user.cin}}</h4></li>
+    <li class"list-group-item"><h4> Date de naissance : {{user.dateDeNaissance|date('F j, Y')}}</h4></li>
+    <br></br>
+    </ul>
+    <h3><i class="fas fa-file-contract"></i>  Mutuelles </h3>
+    <br></br>
+    {% if(mutuelle == null) %}
+    <h4>vous n'avez pas de mutuelles</h4>
+    <br></br>
+    {% else %}
+    <ul class="list-group">
+    <li class"list-group-item"><h4> Caisse : {{mutuelle.caisse}}</h4></li>
+    <li class"list-group-item"><h4> Valide de : "{{mutuelle.valide}}"  à  "{{mutuelle.a}}" </h4></li>
+    <li class"list-group-item"><h4> Identificateur Unique : "{{mutuelle.identificateur}}" </h4></li>
+    <br></br>
+    <br></br>
+    </ul>
+    {% endif %}
+    <h3><i class="far fa-calendar-check"></i> Consultations</h3>
+    <body>
+
+<br></br>
+<table class="table table-stripped">
+    <thead class="thead-light">
+      <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Maladie</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+        {% for consult in consultations %}
+
+            <tr>
+        <td>{{consult.date_consult}}</td>
+        <td>{{consult.type}}</td>
+        <td>{{consult.maladie}}</td>
+        <td><a href="/voirmaconsult/{{consult.id}}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+        </td>
+          </tr>
+
+        {% endfor %}
+
+    </tbody>
+  </table>
+  </body>    
+{% endblock %}

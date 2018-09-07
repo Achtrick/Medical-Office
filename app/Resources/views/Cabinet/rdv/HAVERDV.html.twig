@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1><center>
+ <i class="far fa-calendar-check"> 
+ Votre prochain rendez-vous est le <br></br>
+ {{value1.date_rdv}} / {{value1.seance}}<br></br>
+</i>
+{% if(sco == true) %}
+	<a href="/contact" class="btn btn-warning"><i class="fas fa-edit">  Modifier votre rendez-vous</i></a>
+{% endif %}
+</center>
+</h1>
+{% endblock %}

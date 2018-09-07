@@ -8,12 +8,6 @@
     C2 { color: #FFFFFF; }
   </style>
 
-  <style>
-    .dropdown:hover>.dropdown-menu{
-      display: block;
-    }
-  </style>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -22,13 +16,24 @@
 
     <title>{% block title %}Cabinet Medicale{% endblock %}</title>
 
+    
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" >
-
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/font-awesome.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('icon.ico') }}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{{ asset('css/full-slider.css') }}" >
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker-standalone.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
 
 {% block stylesheets %}{% endblock %}
 
@@ -47,28 +52,28 @@
           <ul class="navbar-nav ml-auto">
 
             {% if is_granted("ROLE_USER") %}
-             <li class="nav-item active">
+             <li class="nav-item">
               <a class="nav-link" href="/">Accueil
                 <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">À-propos</a>
+              <a class="nav-link" href="/apropos">À-propos</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a> 
+              <a class="nav-link" href="/contact">Contact</a> 
             </li>                  
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
+            <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Services</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="PrendreRDV">Rendez-vous</a>
-              <a class="dropdown-item" href="/voirmafiche">Ma fiche</a>
+              <a class="dropdown-item" href="/PrendreRDV"><i class="far fa-calendar-check"> Rendez-vous</i></a>
+              <a class="dropdown-item" href="/voirmafiche"><i class="far fa-file-alt"> Ma fiche</i></a>
             </div>
             </li> 
 
             {% else %}
 
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/">Accueil
                 <span class="sr-only">(current)</span>
               </a>
@@ -89,19 +94,18 @@
               <a class="nav-link" href=""></a>
             </li>
             <li>
-          <C2>
+          <C1>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} 
-                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-dark">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
+                <h5><i class="fas fa-user"></i> {{ app.user.username }} 
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-dark"> Déconnexion <i class="fas fa-sign-out-alt"></i>
+                </a></h5>
             {% else %}
                 <a href="{{ path('fos_user_security_login') }}" class="btn btn-info">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                 <a href="{{ path('fos_user_registration_register') }}" class="btn btn-dark">
                   Register
                 </a>
             {% endif %}
-          </C2> 
+          </C1> 
             </li> 
           </ul>
         </div>
@@ -155,10 +159,7 @@
     <!-- Page Content -->
     <section class="py-5">
       <div class="container">
-        <h1><center>Notre cabinet électronique est à votre disposition</center></h1>
-        <br></br>
-        <center>💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊💊</center>
-        <br></br>
+          <br></br>
         <p><h2><center>Profitez de nos services spécialement conçus pour votre détente</center><h2></p>
       </div>
     </section>
@@ -167,17 +168,17 @@
         <div class="row">
           <div class="col-md-4">
           {% block left %}
-            <div><h3>Prenez votre rendez-vous depuis n'importe quel place et profitez de notre guidage bien automatisé <br></br></br></h3><img src="../../../../pr.jpg", class="img-thumbnail" ></div>
+            <div><h3><i class="fas fa-calendar-check"></i> Rendez-vous</h3><p>Prenez votre rendez-vous depuis n'importe quel place et profitez de notre guidage bien automatisé </br></br></p><img src="../../../../pr.jpg", class="img-thumbnail" ></div>
           {% endblock %}
           </div>
           <div class="col-md-4">
           {% block body %}
-            <div><h3>Consultez votre fiche médicale et le workflow de votre traitement et tous les informations personnels en toutes sécurité<br></br></h3><img src="../../../../fm.jpg", class="img-thumbnail" ></div>
+            <div><h3><i class="fas fa-user-md"></i> Consultation</h3><p>Consultez votre fiche médicale et le workflow de votre traitement et tous les informations personnels en toutes sécurité<br></br></p><img src="../../../../fm.jpg", class="img-thumbnail" ></div>
           {% endblock %}
           </div>
           <div class="col-md-4">
             {% block right %}
-              <div><h3>Profitez de notre service clients pour trouver les réponses à toutes vos questions <br></br></br></h3><img src="../../../../sc.jpg", class="img-thumbnail" ></div>
+              <div><h3><i class="fas fa-headset"></i> Service Client</h3><p>Profitez de notre service clients pour trouver les réponses à toutes vos questions <br></br></br></p><img src="../../../../sc.jpg", class="img-thumbnail" ></div>
             {% endblock %}
           </div>
         </div>
@@ -186,12 +187,49 @@
     <!-- Footer -->
     <footer class="py-5" style="background-color: #cccccc;">
       <div class="container">
-        <p class="m-0 text-center text-black">Copyright &copy; PerfectsWeb 2018</p>
+        <div class="row">
+          <div class="col-md-4">
+            <center>
+            <h6><span class="copyright">Copyright &copy; Perfects web 2018</span></h6>
+          </center>
+          </div>
+          <div class="col-md-4">
+            <center><C1>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                  <h5><a class="btn btn-dark" href="http://twitter.com"><i class="fab fa-twitter"></i></a><h5>
+              </li>
+              <li class="list-inline-item">
+                  <h5><a class="btn btn-dark" href="http://facebook.com"><i class="fab fa-facebook-f"></i></a></h5>
+              </li>
+              <li class="list-inline-item">
+                  <h5><a class="btn btn-dark" href="http://linkedin.com"><i class="fab fa-linkedin-in"></i></a><h5>
+              </li>
+            </ul>
+          </C1></center>
+          </div>
+          <div class="col-md-4">
+            <center>
+            <ul class="list-inline quicklinks">
+              <li class="list-inline-item">
+                <h6>Privacy Policy</h6>
+              </li>
+              <li class="list-inline-item">
+                <h6>Terms of Use</h6>
+              </li>
+            </ul>
+          </center>
+          </div>
+        </div>
       </div>
-      <!-- /.container -->
     </footer>
-
     <!-- Bootstrap core JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
     <script src="{{ asset('jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
      {% block javascripts %}

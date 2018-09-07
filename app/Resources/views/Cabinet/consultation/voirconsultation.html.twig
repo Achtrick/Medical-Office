@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block table %}
+<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="far fa-question-circle"></i>
+            </div>
+            <div class="modal-body">
+                Est ce que vous êtes sûr ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Non</button>
+                <a class="btn btn-secondary btn-ok">Oui</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br></br>
+<br></br>
+<a href="/Cabinet/Administration/Gestionconsultation/voir/" class="btn btn-outline-secondary">Retour</a>
+<br></br>
+{% for user in users %}
+<h1 class="page-header"> Liste des consultations de "{{user.nom}} {{user.prenom}}" </h1><br></br>
+{% endfor %}
+<body>
+
+<table class="table table-stripped">
+    <thead class="thead-light">
+    {% for user in users %}
+    <div class="row">
+     <div class="col-4">
+      <form class="pull-right hidden" role="search" id="nav-search-form" method="post" action='/Cabinet/Administration/Gestionconsultation/voir/search/{{user.cin}}'>
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search" name ="search">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-dark"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </span>
+        </div>
+      </form>
+    </div>
+     <div class="col-8"></div>
+   </div>
+   {% endfor %} 
+   <br></br>
+      <tr>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Maladie</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+  {% for consult in consults %}
+          <tr>
+        <td>{{consult.date_consult}}</td>
+        <td>{{consult.type}}</td>
+        <td>{{consult.maladie}}</td>
+        <td><a href="/Cabinet/Administration/Gestionconsultation/voirconsult/{{consult.id}}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+        <a href="/Cabinet/Administration/Gestionconsultation/edit/{{consult.id}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+        <button class="btn btn-danger" data-href="/Cabinet/Administration/Gestionconsultation/delete/{{consult.id}}" data-toggle="modal" data-target="#confirm-delete">
+        <i class="far fa-trash-alt"></i>
+        </button>
+        </td>
+      		</tr>
+  {% endfor %}
+    </tbody>
+  </table>
+  </body>
+{% endblock %}
